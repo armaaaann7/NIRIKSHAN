@@ -1,0 +1,191 @@
+{
+  "source_image": "/mnt/data/NIRIKSHAN/sample_data/demo_baseline.jpg",
+  "scope_note": "Synthetic control benchmark from one image. It measures pipeline regression/failure modes, not real-facade accuracy or structural safety.",
+  "priority_rule_note": "Single isolated crack-like evidence is intentionally allowed to remain Routine; review escalation is evaluated separately on multiple staged regions.",
+  "summary": {
+    "unchanged_reliable_cases": 12,
+    "false_alarm_count": 0,
+    "false_alarm_rate": 0.0,
+    "changed_reliable_cases": 3,
+    "visual_change_detection_recall": 1.0,
+    "multi_region_priority_recall": 1.0
+  },
+  "cases": [
+    {
+      "case": "identical",
+      "label": "unchanged",
+      "alignment_confidence": 1.0,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.0,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "jpeg_q90",
+      "label": "unchanged",
+      "alignment_confidence": 0.982,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.8634,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "jpeg_q75",
+      "label": "unchanged",
+      "alignment_confidence": 0.974,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.8685,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "jpeg_q60",
+      "label": "unchanged",
+      "alignment_confidence": 0.961,
+      "reliable": false,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.9074,
+      "score": null,
+      "band": "Recapture required"
+    },
+    {
+      "case": "gamma_0_8",
+      "label": "unchanged",
+      "alignment_confidence": 0.996,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.8371,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "gamma_1_2",
+      "label": "unchanged",
+      "alignment_confidence": 0.992,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.8372,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "brightness_plus_40",
+      "label": "unchanged",
+      "alignment_confidence": 1.0,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.8465,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "brightness_minus_40",
+      "label": "unchanged",
+      "alignment_confidence": 1.0,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.8377,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "mild_noise",
+      "label": "unchanged",
+      "alignment_confidence": 0.989,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.8577,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "shadow_gradient",
+      "label": "unchanged",
+      "alignment_confidence": 0.987,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.9454,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "rotate_1deg_shift",
+      "label": "unchanged",
+      "alignment_confidence": 0.97,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.9176,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "rotate_3deg_shift",
+      "label": "unchanged",
+      "alignment_confidence": 0.944,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.814,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "mild_perspective",
+      "label": "unchanged",
+      "alignment_confidence": 0.982,
+      "reliable": true,
+      "crack_change": 0.0,
+      "new_crack_regions": 0,
+      "spall_visual_change": 0.9248,
+      "score": 0.0,
+      "band": "Routine"
+    },
+    {
+      "case": "single_staged_mark",
+      "label": "single_changed",
+      "alignment_confidence": 0.998,
+      "reliable": true,
+      "crack_change": 0.4416,
+      "new_crack_regions": 1,
+      "spall_visual_change": 0.509,
+      "score": 18.4,
+      "band": "Routine"
+    },
+    {
+      "case": "multiple_staged_marks_3",
+      "label": "multi_changed",
+      "alignment_confidence": 0.995,
+      "reliable": true,
+      "crack_change": 0.9556,
+      "new_crack_regions": 2,
+      "spall_visual_change": 0.44,
+      "score": 60.0,
+      "band": "Review recommended"
+    },
+    {
+      "case": "multiple_staged_marks_4",
+      "label": "multi_changed",
+      "alignment_confidence": 0.995,
+      "reliable": true,
+      "crack_change": 1.0,
+      "new_crack_regions": 3,
+      "spall_visual_change": 0.702,
+      "score": 79.3,
+      "band": "High"
+    }
+  ]
+}

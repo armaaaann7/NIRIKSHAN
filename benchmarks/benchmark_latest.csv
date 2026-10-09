@@ -1,0 +1,17 @@
+case,label,alignment_confidence,reliable,crack_change,new_crack_regions,spall_visual_change,score,band
+identical,unchanged,1.0,True,0.0,0,0.0,0.0,Routine
+jpeg_q90,unchanged,0.982,True,0.0,0,0.8634,0.0,Routine
+jpeg_q75,unchanged,0.974,True,0.0,0,0.8685,0.0,Routine
+jpeg_q60,unchanged,0.961,False,0.0,0,0.9074,,Recapture required
+gamma_0_8,unchanged,0.996,True,0.0,0,0.8371,0.0,Routine
+gamma_1_2,unchanged,0.992,True,0.0,0,0.8372,0.0,Routine
+brightness_plus_40,unchanged,1.0,True,0.0,0,0.8465,0.0,Routine
+brightness_minus_40,unchanged,1.0,True,0.0,0,0.8377,0.0,Routine
+mild_noise,unchanged,0.989,True,0.0,0,0.8577,0.0,Routine
+shadow_gradient,unchanged,0.987,True,0.0,0,0.9454,0.0,Routine
+rotate_1deg_shift,unchanged,0.97,True,0.0,0,0.9176,0.0,Routine
+rotate_3deg_shift,unchanged,0.944,True,0.0,0,0.814,0.0,Routine
+mild_perspective,unchanged,0.982,True,0.0,0,0.9248,0.0,Routine
+single_staged_mark,single_changed,0.998,True,0.4416,1,0.509,18.4,Routine
+multiple_staged_marks_3,multi_changed,0.995,True,0.9556,2,0.44,60.0,Review recommended
+multiple_staged_marks_4,multi_changed,0.995,True,1.0,3,0.702,79.3,High

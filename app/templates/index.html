@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NIRIKSHAN · Building Deterioration Monitor</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="nav-wrap">
+        <button class="brand-lockup nav-home" data-view="dashboard" aria-label="NIRIKSHAN home">
+          <span class="brand-symbol" aria-hidden="true">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="8" width="28" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2.4"/>
+              <path d="M16 40V18L24 25L32 18V40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="logo-scan" d="M24 6V42" stroke-width="2.8" stroke-linecap="round"/>
+              <circle class="logo-dot" cx="24" cy="42" r="2.4"/>
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <strong>NIRIKSHAN</strong>
+            <small>Building intelligence</small>
+          </span>
+        </button>
+
+        <nav class="top-nav" aria-label="Primary navigation">
+          <button class="nav-item active" data-view="dashboard">Overview</button>
+          <button class="nav-item" data-view="buildings">Buildings</button>
+          <button class="nav-item" data-view="inspect">New inspection</button>
+          <button class="nav-item" data-view="about">Method & limits</button>
+        </nav>
+
+        <div class="header-actions">
+          <span class="system-badge"><i></i> Engineer-assist system</span>
+          <button class="button primary compact" data-open="buildingModal">Register building</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">SEVA FIRST · LOCAL COMMUNITY INNOVATION</p>
+          <h1 id="pageTitle">Inspection overview</h1>
+        </div>
+        <div class="page-actions">
+          <button class="button secondary" id="seedDemo">Load synthetic demo</button>
+          <button class="button primary" data-open="buildingModal">+ Register building</button>
+        </div>
+      </div>
+
+      <section id="dashboard" class="view active">
+        <section class="hero-section">
+          <div class="hero-content">
+            <span class="hero-label">AI-assisted visual monitoring for ageing buildings</span>
+            <h2>See what changed.<br><span>Prioritise what needs review.</span></h2>
+            <p class="hero-copy">NIRIKSHAN keeps a visual history of specific parts of a building. On later visits it compares a new smartphone photo with the earlier photo and helps engineers prioritise visible change for review.</p>
+            <div class="hero-actions">
+              <button class="button hero-primary" data-view="inspect">Start an inspection</button>
+              <button class="button hero-secondary" data-view="about">View methodology</button>
+            </div>
+            <div class="trust-row">
+              <div><strong>01</strong><span>Identify the building</span></div>
+              <div><strong>02</strong><span>Photograph one area</span></div>
+              <div><strong>03</strong><span>Return, compare & review</span></div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="scan-card scan-card-main">
+              <div class="scan-topline"><span>BUILDING AREA MONITORING</span><b>LIVE PIPELINE</b></div>
+              <div class="building-graphic">
+                <div class="building-window-grid"></div>
+                <span class="scan-line"></span>
+                <span class="scan-point p1"></span>
+                <span class="scan-point p2"></span>
+                <span class="scan-point p3"></span>
+              </div>
+              <div class="scan-footer"><span>Image registration</span><strong>Visual evidence → human review</strong></div>
+            </div>
+            <div class="floating-card floating-a"><small>Priority queue</small><strong>Evidence-led</strong></div>
+            <div class="floating-card floating-b"><small>Hardware</small><strong>Smartphone only</strong></div>
+          </div>
+        </section>
+
+        <section class="info-strip">
+          <div class="info-strip-title">
+            <span>Prototype objective</span>
+            <strong>Build a simple visual history between formal inspections</strong>
+          </div>
+          <p>NIRIKSHAN does not certify structural safety. It organises visual evidence so engineers can focus limited inspection time where visible change is strongest.</p>
+        </section>
+
+        <div class="stats" id="stats"></div>
+
+        <div class="dashboard-grid">
+          <section class="panel queue-panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">ENGINEER REVIEW QUEUE</p>
+                <h3>Highest inspection priority</h3>
+                <p class="panel-subtitle">Reliable analyses are ordered by visual-change priority. Open an item to inspect the before/after evidence.</p>
+              </div>
+              <button class="text-button" data-view="buildings">View all buildings →</button>
+            </div>
+            <div id="queueTable" class="table-wrap"></div>
+          </section>
+
+          <aside class="panel guide-panel">
+            <p class="eyebrow">QUICK START</p>
+            <h3>How to use NIRIKSHAN</h3>
+            <ol class="steps-list">
+              <li><span>1</span><div><strong>Identify the building</strong><p>Use the building or society name, address and optionally your current GPS location.</p></div></li>
+              <li><span>2</span><div><strong>Choose a simple area</strong><p>Select the actual building element: balcony, column, beam, slab / chajja, structural wall, plaster wall or another visible area.</p></div></li>
+              <li><span>3</span><div><strong>Take the first photo</strong><p>NIRIKSHAN saves it automatically as the starting point for that area.</p></div></li>
+              <li><span>4</span><div><strong>Return and take a new photo</strong><p>The system compares it with the earlier photo and sends reliable results to engineer review.</p></div></li>
+            </ol>
+            <button class="button secondary wide" data-view="inspect">Open inspection workflow</button>
+          </aside>
+        </div>
+
+        <section class="capability-section">
+          <div class="section-heading">
+            <p class="eyebrow">CORE CAPABILITIES</p>
+            <h3>Designed for repeatable, explainable monitoring</h3>
+          </div>
+          <div class="capability-grid">
+            <article class="capability-card"><span class="cap-icon">01</span><h4>Consistent capture</h4><p>Each monitored area has a simple name such as “Balcony · 3rd floor”. The first accepted photo becomes its starting reference automatically.</p></article>
+            <article class="capability-card"><span class="cap-icon">02</span><h4>Image alignment</h4><p>The system attempts to register the new image against a trusted reference before comparing visible changes.</p></article>
+            <article class="capability-card"><span class="cap-icon">03</span><h4>Visible-change evidence</h4><p>The score accumulates progression, multiple crack-like regions and structural context instead of escalating a building because of one isolated mark.</p></article>
+            <article class="capability-card"><span class="cap-icon">04</span><h4>Human-in-the-loop</h4><p>Engineers confirm findings, mark false alarms or request a site visit. NIRIKSHAN never replaces professional judgement.</p></article>
+          </div>
+        </section>
+      </section>
+
+      <section id="buildings" class="view">
+        <div class="section-banner">
+          <div><p class="eyebrow">MONITORED PORTFOLIO</p><h2>Building records & inspection history</h2><p>Each card shows the latest reliable inspection-priority result and how many building areas are being monitored. Select a building to continue.</p></div>
+          <button class="button primary" data-open="buildingModal">+ Add building</button>
+        </div>
+        <div class="panel building-panel">
+          <div id="buildingGrid" class="building-grid"></div>
+        </div>
+      </section>
+
+      <section id="inspect" class="view">
+        <div class="inspection-intro">
+          <div>
+            <p class="eyebrow">SIMPLE REPEAT-INSPECTION WORKFLOW</p>
+            <h2>Choose the building area. NIRIKSHAN handles the reference photo.</h2>
+            <p>You only choose the building and the part you are photographing. For a new area, the first photo is saved automatically. When you return later, choose the same area and upload today’s photo.</p>
+          </div>
+          <div class="inspection-rules">
+            <span><b>1</b> Correct building</span>
+            <span><b>2</b> Same visible area</span>
+            <span><b>3</b> Similar photo angle</span>
+            <span><b>4</b> Engineer reviews result</span>
+          </div>
+        </div>
+
+        <div class="split-layout">
+          <div class="panel form-panel">
+            <div class="form-header">
+              <span class="section-number">01</span>
+              <div><p class="eyebrow">RECORD AN INSPECTION</p><h3>What are you photographing?</h3></div>
+            </div>
+
+            <div class="instruction-box">
+              <strong>How it works</strong>
+              <p>If this is the first photo of an area, it becomes the starting reference automatically. If the area has been photographed before, NIRIKSHAN compares today’s image with the previous accepted image and the first image.</p>
+            </div>
+
+            <form id="inspectionForm">
+              <label>
+                <span>Building</span>
+                <small>Select the building you are physically inspecting.</small>
+                <select id="inspectionBuilding" required></select>
+              </label>
+
+              <div id="buildingIdentity" class="identity-card hidden"></div>
+
+              <label id="existingAreaLabel">
+                <span>Monitored area</span>
+                <small>Choose an area already photographed, or add a new one.</small>
+                <select id="existingArea"></select>
+              </label>
+
+              <div id="newAreaFields" class="area-builder">
+                <div class="area-builder-head">
+                  <strong>Add a new inspection area</strong>
+                  <span>Choose the actual element so the system can apply the right structural context.</span>
+                </div>
+                <div class="two-col">
+                  <label>
+                    <span>Building part</span>
+                    <select id="areaType">
+                      <option value="Building exterior / facade">Building exterior / facade</option>
+                      <option value="Balcony">Balcony</option>
+                      <option value="Column">Column</option>
+                      <option value="Beam">Beam</option>
+                      <option value="Slab / Chajja">Slab / Chajja</option>
+                      <option value="Structural wall">Structural wall</option>
+                      <option value="Partition / plaster wall">Partition / plaster wall</option>
+                      <option value="Staircase exterior">Staircase exterior</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Floor / level</span>
+                    <select id="floorLevel">
+                      <option value="Not applicable">Not applicable</option>
+                      <option value="Ground floor">Ground floor</option>
+                      <option value="1st floor">1st floor</option>
+                      <option value="2nd floor">2nd floor</option>
+                      <option value="3rd floor">3rd floor</option>
+                      <option value="4th floor">4th floor</option>
+                      <option value="5th floor">5th floor</option>
+                      <option value="6th floor">6th floor</option>
+                      <option value="7th floor">7th floor</option>
+                      <option value="8th floor">8th floor</option>
+                      <option value="9th floor">9th floor</option>
+                      <option value="10th floor">10th floor</option>
+                      <option value="11th floor">11th floor</option>
+                      <option value="12th floor">12th floor</option>
+                      <option value="13th floor">13th floor</option>
+                      <option value="14th floor">14th floor</option>
+                      <option value="15th floor">15th floor</option>
+                      <option value="Roof / terrace">Roof / terrace</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  <span>Where exactly? <em>optional</em></span>
+                  <small>Example: near flat 302, beside staircase, left corner. Required if you choose “Other”.</small>
+                  <input id="areaNote" maxlength="90" placeholder="e.g. Near flat 302" />
+                </label>
+                <div id="areaPreview" class="area-preview">New area: <strong>Building exterior / facade</strong></div>
+              </div>
+
+              <div id="referenceHint" class="hint">Select a building and area.</div>
+
+              <label>
+                <span id="inspectionImageLabel">Inspection photo</span>
+                <small id="inspectionImageHelp">Take or upload a clear exterior photo of the selected area.</small>
+                <input id="inspectionImage" type="file" accept="image/*" capture="environment" required />
+              </label>
+
+              <div id="capturePreview" class="capture-preview hidden">
+                <div class="preview-label">Previous photo overlay preview</div>
+                <img id="previousPreview" alt="Previous accepted photo" />
+                <img id="newPreview" alt="New photo preview" />
+              </div>
+
+              <label id="overlayControl" class="range-label hidden"><span>Previous-photo overlay opacity</span><input id="overlayOpacity" type="range" min="0" max="100" value="55" /></label>
+              <button id="recordInspectionButton" class="button primary wide large-button" type="submit">Record first inspection photo</button>
+              <p class="small-copy form-footnote">Every successful submission receives a Capture or Inspection number and timestamp, so you always know what was recorded.</p>
+            </form>
+          </div>
+
+          <div class="panel result-panel" id="analysisPanel">
+            <div class="empty-state">
+              <div class="empty-visual"><span></span><span></span><span></span></div>
+              <h3>No inspection selected yet</h3>
+              <p>For a new area, the first photo will be saved as its starting visual record. On later visits this panel will show before/after evidence, alignment confidence, visible change and engineer-review controls.</p>
+              <div class="empty-help-grid">
+                <div><b>First visit</b><span>Save one clear photo of the area. No comparison is made yet.</span></div>
+                <div><b>Later visit</b><span>Choose the same area and upload a new photo.</span></div>
+                <div><b>Engineer review</b><span>Reliable comparisons enter the review queue with a timestamp.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="view">
+        <div class="section-banner method-banner">
+          <div><p class="eyebrow">METHOD, LIMITS & RESPONSIBLE USE</p><h2>What the prototype does — and what it deliberately does not claim</h2><p>The current build is an engineering-assist prototype. Its purpose is to organise visible evidence, not replace a structural inspection.</p></div>
+        </div>
+
+        <div class="method-grid">
+          <article class="panel method-card"><span class="method-index">01</span><p class="eyebrow">WHAT IT DOES</p><h3>Longitudinal visible-change monitoring</h3><p>NIRIKSHAN compares repeated exterior smartphone images of the same simple building area, such as a balcony, wall or column, and highlights visible changes that may deserve engineer review.</p></article>
+          <article class="panel method-card"><span class="method-index">02</span><p class="eyebrow">CURRENT PIPELINE</p><h3>Registration before comparison</h3><p>The prototype first checks whether two images are comparable, performs image registration and illumination normalisation, then evaluates crack-candidate change.</p></article>
+          <article class="panel method-card warning-panel"><span class="method-index">03</span><p class="eyebrow">LIMITATION</p><h3>No structural safety verdict</h3><p>The Inspection Priority Score is a transparent review-order heuristic. It is not collapse probability, structural certification, or proof that a building is safe or unsafe.</p></article>
+          <article class="panel method-card"><span class="method-index">04</span><p class="eyebrow">AI ROADMAP</p><h3>Model-ready vision layer</h3><p>The segmentation layer is isolated so the current classical baseline can later be replaced with a trained U-Net, DeepLabV3+, SegFormer or YOLO-seg model.</p></article>
+          <article class="panel method-card"><span class="method-index">05</span><p class="eyebrow">PRIVACY</p><h3>Exterior evidence only</h3><p>Use legally captured exterior imagery only. Production deployment requires role-based access, privacy filtering, hardened storage and audit logging.</p></article>
+          <article class="panel method-card"><span class="method-index">06</span><p class="eyebrow">HUMAN REVIEW</p><h3>Engineer remains the decision-maker</h3><p>Every result is designed to be reviewed with its evidence. Uncertain captures are quarantined rather than silently influencing the queue.</p></article>
+          <article class="panel method-card"><span class="method-index">07</span><p class="eyebrow">PRIORITY LOGIC</p><h3>Evidence accumulates before priority rises</h3><p>One isolated crack-like region normally stays in routine monitoring. Multiple new regions, repeated progression and structurally relevant elements raise inspection priority.</p></article>
+          <article class="panel method-card"><span class="method-index">08</span><p class="eyebrow">STRUCTURAL STRENGTH</p><h3>Never guessed from a photo</h3><p>Structure type and verified engineering records provide context. If strength or test data is unavailable, the product explicitly shows “Not assessed”.</p></article>
+        </div>
+
+        <section class="disclaimer-panel">
+          <strong>Important:</strong> NIRIKSHAN is a prototype for visual monitoring and inspection prioritisation. It must not be used as a substitute for a structural engineer, statutory inspection or emergency response.
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div><strong>NIRIKSHAN</strong><span>AI-assisted building deterioration monitoring</span></div>
+      <p>Prototype · SEVA FIRST Innovation Challenge 2026</p>
+    </footer>
+  </div>
+
+  <dialog id="buildingModal">
+    <form class="modal-card" id="buildingForm">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow">NEW BUILDING RECORD</p>
+          <h3>Identify the building</h3>
+          <p class="modal-description">Use a recognisable building or society name and a complete enough address. GPS can help match a registered building nearby, but you still confirm the property name.</p>
+        </div>
+        <button class="icon-button" id="closeBuildingModal" type="button" aria-label="Close">×</button>
+      </div>
+
+      <div class="location-box">
+        <div>
+          <strong>Use current location</strong>
+          <p>Helps NIRIKSHAN find already-registered buildings close to you and stores coordinates with the record.</p>
+        </div>
+        <button class="button secondary compact" id="detectLocation" type="button">Use my location</button>
+      </div>
+      <div id="locationStatus" class="location-status">Location not added. You can still register using a clear address.</div>
+      <input id="bLatitude" type="hidden" />
+      <input id="bLongitude" type="hidden" />
+
+      <div class="form-section">
+        <label>
+          <span>Building / society name</span>
+          <input id="bName" type="text" minlength="3" maxlength="160" placeholder="e.g. Shanti Sadan CHS" required />
+          <small>Minimum 3 characters. Enter the name a resident or inspector would recognise.</small>
+        </label>
+        <label>
+          <span>Address / locality</span>
+          <input id="bAddress" type="text" minlength="8" maxlength="300" placeholder="e.g. 42 Khetwadi Main Road, Girgaon, Mumbai" required />
+          <small>Do not enter only one letter or a vague location. Give enough detail to find the property again.</small>
+        </label>
+        <div class="two-col">
+          <label>
+            <span>PIN code</span>
+            <input id="bPincode" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="400004" />
+          </label>
+          <label>
+            <span>Ward</span>
+            <select id="bWard">
+              <option value="">Not sure / not entered</option>
+              <option>A Ward</option><option>B Ward</option><option>C Ward</option><option>D Ward</option><option>E Ward</option>
+              <option>F/N Ward</option><option>F/S Ward</option><option>G/N Ward</option><option>G/S Ward</option>
+              <option>H/E Ward</option><option>H/W Ward</option><option>K/E Ward</option><option>K/W Ward</option>
+              <option>L Ward</option><option>M/E Ward</option><option>M/W Ward</option><option>N Ward</option>
+              <option>P/N Ward</option><option>P/S Ward</option><option>R/C Ward</option><option>R/N Ward</option><option>R/S Ward</option><option>S Ward</option><option>T Ward</option>
+            </select>
+          </label>
+        </div>
+        <div class="context-section">
+          <div class="context-heading">
+            <div>
+              <p class="eyebrow">STRUCTURAL CONTEXT</p>
+              <strong>Tell NIRIKSHAN what kind of building this is</strong>
+            </div>
+            <span>Not sure? Choose Unknown.</span>
+          </div>
+          <p class="context-note">These details only adjust inspection priority. NIRIKSHAN does not estimate structural strength, concrete grade or safety from a photograph.</p>
+
+          <div class="two-col">
+            <label>
+              <span>Structure type</span>
+              <select id="bStructureType">
+                <option>Unknown</option>
+                <option>RCC framed structure</option>
+                <option>Load-bearing masonry</option>
+                <option>Steel structure</option>
+                <option>Composite / mixed</option>
+              </select>
+            </label>
+            <label>
+              <span>Number of floors</span>
+              <input id="bFloorCount" type="number" min="1" max="200" placeholder="e.g. 7" />
+            </label>
+          </div>
+
+          <div class="two-col">
+            <label>
+              <span>Approximate age</span>
+              <div class="input-with-suffix"><input id="bAge" type="number" min="0" max="250" placeholder="65" /><span>years</span></div>
+            </label>
+            <label>
+              <span>Primary construction material</span>
+              <select id="bPrimaryMaterial">
+                <option>Unknown</option>
+                <option>Reinforced concrete</option>
+                <option>Brick masonry</option>
+                <option>Stone masonry</option>
+                <option>Steel</option>
+                <option>Mixed / other</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="two-col">
+            <label>
+              <span>Previous structural repairs</span>
+              <select id="bRepairHistory">
+                <option>Unknown</option>
+                <option>None known</option>
+                <option>Minor repairs</option>
+                <option>Major structural repairs</option>
+              </select>
+            </label>
+            <label>
+              <span>Previous engineer assessment</span>
+              <select id="bEngineerAssessment">
+                <option>No verified record</option>
+                <option>Routine / no action recorded</option>
+                <option>Monitoring recommended</option>
+                <option>Repairs recommended</option>
+                <option>Urgent inspection previously recommended</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            <span>Verified structural test / strength information</span>
+            <textarea id="bStrengthData" rows="2" maxlength="2000" placeholder="Optional — e.g. concrete grade from drawings, rebound hammer / UPV result, core test summary, engineer-recorded dimensions..."></textarea>
+            <small>Only enter information from a drawing, test report or engineer record. If none exists, leave this blank and NIRIKSHAN will show “Not assessed”.</small>
+          </label>
+        </div>
+
+        <label><span>General notes</span><textarea id="bNotes" rows="3" maxlength="2000" placeholder="Access instructions, capture guidance, repair history details or engineer remarks..."></textarea></label>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="button secondary" id="cancelBuildingModal">Cancel</button>
+        <button class="button primary" type="submit">Register building</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
