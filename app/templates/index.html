@@ -4,37 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NIRIKSHAN · Building Deterioration Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="stylesheet" href="/static/cinematic.css" />
 </head>
 <body>
   <div class="site-shell">
     <header class="site-header">
       <div class="nav-wrap">
         <button class="brand-lockup nav-home" data-view="dashboard" aria-label="NIRIKSHAN home">
-          <span class="brand-symbol" aria-hidden="true">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="8" width="28" height="32" rx="4" fill="none" stroke="currentColor" stroke-width="2.4"/>
-              <path d="M16 40V18L24 25L32 18V40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-              <path class="logo-scan" d="M24 6V42" stroke-width="2.8" stroke-linecap="round"/>
-              <circle class="logo-dot" cx="24" cy="42" r="2.4"/>
-            </svg>
-          </span>
-          <span class="brand-copy">
-            <strong>NIRIKSHAN</strong>
-            <small>Building intelligence</small>
-          </span>
+          <span class="brand-wordmark" aria-hidden="true">NIRI<span>K</span>SHAN</span>
         </button>
 
         <nav class="top-nav" aria-label="Primary navigation">
-          <button class="nav-item active" data-view="dashboard">Overview</button>
+          <button class="nav-item active" data-view="dashboard">Home</button>
           <button class="nav-item" data-view="buildings">Buildings</button>
-          <button class="nav-item" data-view="inspect">New inspection</button>
-          <button class="nav-item" data-view="about">Method & limits</button>
+          <button class="nav-item" data-view="inspect">Inspect</button>
+          <button class="nav-item review-nav" type="button" onclick="showView('dashboard'); setTimeout(() => document.querySelector('.queue-panel')?.scrollIntoView({behavior:'smooth'}), 80)">Review Queue</button>
+          <button class="nav-item" data-view="about">About</button>
         </nav>
 
-        <div class="header-actions">
-          <span class="system-badge"><i></i> Engineer-assist system</span>
-          <button class="button primary compact" data-open="buildingModal">Register building</button>
+        <div class="header-actions cinematic-nav-actions">
+          <button class="nav-search-pill" type="button" data-view="buildings" aria-label="Open buildings">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.4-3.4"></path></svg>
+            <span>Search buildings...</span>
+            <kbd>⌘K</kbd>
+          </button>
+          <button class="nav-profile-button" type="button" data-open="buildingModal" aria-label="Register building" title="Register building">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21c.7-4.2 3.2-6.3 7.5-6.3s6.8 2.1 7.5 6.3"></path></svg>
+          </button>
         </div>
       </div>
     </header>
@@ -52,36 +52,75 @@
       </div>
 
       <section id="dashboard" class="view active">
-        <section class="hero-section">
+        <section class="hero-section cinematic-hero">
+          <div class="hero-photo" aria-hidden="true"></div>
+          <div class="hero-shade" aria-hidden="true"></div>
+          <div class="hero-bottom-blur" aria-hidden="true"></div>
+
           <div class="hero-content">
-            <span class="hero-label">AI-assisted visual monitoring for ageing buildings</span>
-            <h2>See what changed.<br><span>Prioritise what needs review.</span></h2>
-            <p class="hero-copy">NIRIKSHAN keeps a visual history of specific parts of a building. On later visits it compares a new smartphone photo with the earlier photo and helps engineers prioritise visible change for review.</p>
-            <div class="hero-actions">
-              <button class="button hero-primary" data-view="inspect">Start an inspection</button>
-              <button class="button hero-secondary" data-view="about">View methodology</button>
+            <div class="hero-overline animate-enter delay-1"><span></span> FROM PHOTOS TO PRIORITY</div>
+            <h2 class="animate-enter delay-2">Track visible change.<br><span>Prioritise inspection.</span></h2>
+            <p class="hero-copy animate-enter delay-3">NIRIKSHAN uses repeat photographs and computer vision to track visible deterioration in the same building area over time, helping engineers decide what deserves attention first.</p>
+
+            <div class="hero-feature-row animate-enter delay-4">
+              <div class="hero-feature">
+                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8.5h3l1.5-2h7l1.5 2h3v10H4z"></path><circle cx="12" cy="13.5" r="3.2"></circle></svg></span>
+                <div><strong>Smartphone capture</strong><small>Simple, on-site images</small></div>
+              </div>
+              <div class="hero-feature">
+                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="11" height="11" rx="2"></rect><rect x="9" y="9" width="11" height="11" rx="2"></rect></svg></span>
+                <div><strong>Repeat-photo comparison</strong><small>Track visible change over time</small></div>
+              </div>
+              <div class="hero-feature">
+                <span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3.5 20c.5-4.3 2.4-6.4 5.5-6.4s5 2.1 5.5 6.4"></path><path d="M14 14.5c3.6-.6 5.8 1.2 6.5 5.5"></path></svg></span>
+                <div><strong>Human review</strong><small>Engineer prioritisation</small></div>
+              </div>
             </div>
-            <div class="trust-row">
-              <div><strong>01</strong><span>Identify the building</span></div>
-              <div><strong>02</strong><span>Photograph one area</span></div>
-              <div><strong>03</strong><span>Return, compare & review</span></div>
+
+            <div class="hero-actions animate-enter delay-5">
+              <button class="button hero-primary" data-view="inspect"><span aria-hidden="true">→</span> Get Started</button>
+              <button class="button hero-secondary liquid-glass" type="button" onclick="document.querySelector('.queue-panel')?.scrollIntoView({behavior:'smooth'})">View Inspection Queue</button>
             </div>
           </div>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="scan-card scan-card-main">
-              <div class="scan-topline"><span>BUILDING AREA MONITORING</span><b>LIVE PIPELINE</b></div>
-              <div class="building-graphic">
-                <div class="building-window-grid"></div>
-                <span class="scan-line"></span>
-                <span class="scan-point p1"></span>
-                <span class="scan-point p2"></span>
-                <span class="scan-point p3"></span>
+          <aside class="hero-side animate-enter delay-5" aria-label="How NIRIKSHAN works">
+            <section class="glass-card workflow-card">
+              <div class="glass-head"><span>REPEAT-PHOTO WORKFLOW</span><strong><i></i> ENGINEER-ASSIST</strong></div>
+
+              <div class="workflow-visual" aria-hidden="true">
+                <div class="frame-card">
+                  <span>FIRST PHOTO</span>
+                  <div class="frame-lines"></div>
+                  <small>Accepted reference</small>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="frame-card">
+                  <span>REPEAT PHOTO</span>
+                  <div class="frame-lines shifted"></div>
+                  <small>Same building area</small>
+                </div>
               </div>
-              <div class="scan-footer"><span>Image registration</span><strong>Visual evidence → human review</strong></div>
-            </div>
-            <div class="floating-card floating-a"><small>Priority queue</small><strong>Evidence-led</strong></div>
-            <div class="floating-card floating-b"><small>Hardware</small><strong>Smartphone only</strong></div>
+
+              <div class="workflow-list">
+                <div><b>01</b><span>Align comparable images</span></div>
+                <div><b>02</b><span>Measure visible progression</span></div>
+                <div><b>03</b><span>Send reliable result to review queue</span></div>
+              </div>
+            </section>
+
+            <section class="glass-card boundary-card">
+              <div class="glass-head"><span>SYSTEM BOUNDARY</span><strong><i></i> RESPONSIBLE USE</strong></div>
+              <div class="boundary-row"><span class="boundary-icon eye-icon" aria-hidden="true"></span><span>Tracks visible change</span><i class="ok-dot" aria-label="Supported"></i></div>
+              <div class="boundary-row"><span class="boundary-icon list-icon" aria-hidden="true"></span><span>Orders inspection priority</span><i class="ok-dot" aria-label="Supported"></i></div>
+              <div class="boundary-row"><span class="boundary-icon shield-icon" aria-hidden="true"></span><span>No structural safety verdict</span><i class="limit-dot" aria-label="Not a safety verdict"></i></div>
+            </section>
+          </aside>
+
+          <div class="hero-flow-strip animate-enter delay-6" aria-label="NIRIKSHAN workflow">
+            <div><b>01</b><span><strong>REGISTER</strong><small>Add building and inspection areas</small></span></div>
+            <div><b>02</b><span><strong>INSPECT</strong><small>Upload repeat photos</small></span></div>
+            <div><b>03</b><span><strong>ANALYSE</strong><small>Track visible change</small></span></div>
+            <div><b>04</b><span><strong>REVIEW</strong><small>Engineer queue and feedback</small></span></div>
           </div>
         </section>
 
